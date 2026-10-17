@@ -83,3 +83,4 @@ A persistent disk is important because local SQLite files and uploaded documents
 - Admin access is controlled by `ADMIN_EMAIL`; do not expose the admin email or API keys in client-side code.
 - No sample course material or default notes are included. Only material a user uploads or writes is used for their study content.
 # Website
+# Website
