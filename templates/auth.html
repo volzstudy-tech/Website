@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block title %}{{ 'Create account' if mode=='register' else 'Log in' }} · IGRIS{% endblock %}{% block content %}
+<div class="auth-wrap"><div class="auth-card"><div class="eyebrow">YOUR PERSONAL WORKSPACE</div><h1>{{ 'Create your account' if mode=='register' else 'Welcome back' }}</h1><p class="muted">{{ 'Set up your private study space.' if mode=='register' else 'Sign in to continue studying.' }}</p>
+<form method="post" class="form">
+{% if mode=='register' %}<label>Username<input name="username" required minlength="2" maxlength="40" autocomplete="username" placeholder="Choose a username"></label><label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>{% else %}<label>Username or email<input name="identity" required autocomplete="username" placeholder="Your username or email"></label>{% endif %}
+<label>Password<input name="password" type="password" required {% if mode=='register' %}minlength="10"{% endif %} autocomplete="{{ 'new-password' if mode=='register' else 'current-password' }}" placeholder="{{ 'At least 10 characters' if mode=='register' else 'Your password' }}"></label>
+<button class="btn full" type="submit">{{ 'Create account' if mode=='register' else 'Log in' }} →</button></form>
+<p class="switch">{{ 'Already registered?' if mode=='register' else 'New to IGRIS?' }} <a href="{{ url_for('login' if mode=='register' else 'register') }}">{{ 'Log in' if mode=='register' else 'Create an account' }}</a></p></div></div>{% endblock %}

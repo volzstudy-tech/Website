@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{% block title %}IGRIS Study Hub{% endblock %}</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><div class="shell">
+<header class="top"><a class="brand" href="{{ url_for('index') }}"><span class="logo">IG</span><span><b>IGRIS</b><small>STUDY COMMAND</small></span></a>
+{% if user %}<nav><a href="{{ url_for('dashboard') }}">Dashboard</a><a href="{{ url_for('documents') }}">Documents</a><a href="{{ url_for('notes') }}">Notes</a><a href="{{ url_for('quizzes') }}">AI Tests</a><a href="{{ url_for('history') }}">History</a></nav><div class="account"><span>{{ user.username }}</span><form method="post" action="{{ url_for('logout') }}"><button class="btn ghost small" type="submit">Log out</button></form></div>{% else %}<div class="account"><a class="btn ghost" href="{{ url_for('login') }}">Log in</a><a class="btn" href="{{ url_for('register') }}">Create account</a></div>{% endif %}
+</header>
+{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}<div class="flash-wrap">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}{% endwith %}
+<main>{% block content %}{% endblock %}</main><footer>IGRIS STUDY HUB · Your materials, your practice, your progress.</footer></div></body></html>

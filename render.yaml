@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: igris-study-hub
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: FLASK_SECRET_KEY
+        generateValue: true
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: DATA_DIR
+        value: /var/data
+      - key: AI_PROVIDER
+        value: openai
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+    disk:
+      name: igris-study-data
+      mountPath: /var/data
+      sizeGB: 1
